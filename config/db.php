@@ -2,17 +2,41 @@
 require_once __DIR__ . '/config.php';
 
 // 🔌 Conectar a la base de datos con PDO
+// Conectar a la base de datos con PDO usando DATABASE_URL
 function obtenerConexion() {
     static $pdo = null;
     if ($pdo === null) {
-        $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4';
         try {
-            $pdo = new PDO($dsn, DB_USER, DB_PASS, [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            ]);
+            // Lee la variable de entorno principal de la base de datos de Railway
+            $dbUrl = getenv('DATABASE_URL');
+
+            if ($dbUrl === false) {
+                // Si no estamos en Railway, usamos las constantes locales
+                $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_NAME . ';charset=utf8mb4';
+                $pdo = new PDO($dsn, DB_USER, DB_PASS, [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                ]);
+            } else {
+                // Estamos en Railway, "desarmamos" la URL de conexión
+                $urlInfo = parse_url($dbUrl);
+                
+                $host = $urlInfo['host'];
+                $port = $urlInfo['port'];
+                $user = $urlInfo['user'];
+                $pass = $urlInfo['pass'];
+                $dbName = ltrim($urlInfo['path'], '/'); // Quita la barra inicial del nombre
+
+                $dsn = "mysql:host=$host;port=$port;dbname=$dbName;charset=utf8mb4";
+                
+                $pdo = new PDO($dsn, $user, $pass, [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                ]);
+            }
         } catch (PDOException $e) {
-            die('❌ Error de conexión: ' . $e->getMessage());
+            error_log('Error de conexión a la BD: ' . $e->getMessage());
+            die('Error: No se pudo conectar con la base de datos.');
         }
     }
     return $pdo;
