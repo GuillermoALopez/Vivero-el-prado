@@ -4,7 +4,7 @@
     "builder": "NIXPACKS"
   },
   "deploy": {
-    "startCommand": "vendor/bin/heroku-php-nginx -t public/ -C nginx_app.conf",
+    "startCommand": "vendor/bin/heroku-php-nginx -C nginx_app.conf public/",
     "restartPolicyType": "ON_FAILURE",
     "restartPolicyMaxRetries": 10
   }
