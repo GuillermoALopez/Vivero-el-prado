@@ -5,7 +5,7 @@
     "nixpacksConfig": {
       "providers": ["php"],
       "start": {
-        "cmd": "vendor/bin/heroku-php-nginx -t public/"
+        "cmd": "vendor/bin/heroku-php-nginx -t public/ -C nginx_app.conf"
       }
     }
   }
