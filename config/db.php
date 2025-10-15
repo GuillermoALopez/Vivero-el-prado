@@ -8,7 +8,7 @@ function obtenerConexion() {
     if ($pdo === null) {
         try {
             // Lee la variable de entorno principal de la base de datos de Railway
-            $dbUrl = getenv('DATABASE_URL');
+            $dbUrl = getenv('MYSQL_URL');
 
             if ($dbUrl === false) {
                 // Si no estamos en Railway, usamos las constantes locales
