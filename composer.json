@@ -1,6 +1,7 @@
 {
-    "require": {
-        "dompdf/dompdf": "^3.1",
-        "phpmailer/phpmailer": "^6.10"
-    }
+  "require": {
+    "dompdf/dompdf": "^3.1",
+    "phpmailer/phpmailer": "^6.10",
+    "heroku/heroku-buildpack-php": "*"
+  }
 }
