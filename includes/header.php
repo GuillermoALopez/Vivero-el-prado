@@ -32,6 +32,16 @@ $pageTitle = isset($pageTitle) && $pageTitle !== '' ? ($pageTitle . ' · Vivero 
     <meta name="theme-color" content="#2c7a7b">
     <title><?= htmlspecialchars($pageTitle) ?></title>
 
+    <meta name="theme-color" content="#2c7a7b">
+
+<link rel="manifest" href="<?= BASE_URL ?>/manifest.json">
+
+<link rel="apple-touch-icon" sizes="180x180" href="<?= BASE_URL ?>/assets/icons/apple-touch-icon.png">
+
+<link rel="icon" type="image/png" sizes="32x32" href="<?= BASE_URL ?>/assets/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="<?= BASE_URL ?>/assets/icons/favicon-16x16.png">
+<link rel="shortcut icon" href="<?= BASE_URL ?>/assets/icons/favicon.ico">
+
     <link rel="stylesheet" href="<?= htmlspecialchars($cssUrl) ?>">
 
     <style>
