@@ -1,6 +1,8 @@
 <?php
 // /config/config.php - VERSIÓN FINAL Y CORRECTA ✅
-
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // Cargar todas las dependencias de Composer
 require_once __DIR__ . '/../vendor/autoload.php';
 
