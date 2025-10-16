@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 // /config/config.php - VERSIÓN FINAL Y CORRECTA ✅
 
 // Cargar todas las dependencias de Composer
