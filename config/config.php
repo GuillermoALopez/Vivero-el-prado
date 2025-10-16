@@ -1,7 +1,4 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
 // /config/config.php - VERSIÓN FINAL Y CORRECTA ✅
 
 // Cargar todas las dependencias de Composer
@@ -37,7 +34,7 @@ if (getenv('RAILWAY_ENVIRONMENT')) {
     define('BASE_URL', '/vivero_el_prado/public');
 
 
-// Constantes de email que no cambian
+
 define('MAIL_FROM_EMAIL', 'madelynlotzoj2@gmail.com');
 define('MAIL_FROM_NAME',  'Vivero El Prado');
 define('ADMIN_EMAIL',     'madelynlotzoj2@gmail.com');
